@@ -1,0 +1,13 @@
+{
+  "name": "wordpress-theme/suitecase-theme",
+  "description": "theme for suitecase mag",
+  "version": "1.0.0",
+  "type": "wordpress-theme",
+  "require": {
+    "composer/installers": "2.2.0",
+    "johnpbloch/wordpress-core": ">=6.4"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest"
+  }
+}
