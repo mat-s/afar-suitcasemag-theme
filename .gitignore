@@ -26,9 +26,8 @@ package-lock.json
 /wp-content/mu-plugins/
 /wp-content/plugins/*
 !/wp-content/plugins/.gitkeep
-!/wp-content/plugins/gastro-cool-products/
 /wp-content/themes/*
-!/wp-content/themes/gastro-cool-theme/
+!/wp-content/themes/suitcase-theme/
 
 # ─────────────────────────────
 # System & IDE
