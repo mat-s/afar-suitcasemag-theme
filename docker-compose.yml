@@ -64,24 +64,6 @@ services:
     networks:
       - wordpress-network
 
-  wpcli:
-    image: wordpress:cli
-    platform: linux/amd64
-    container_name: wp_cli
-    depends_on:
-      - db
-    working_dir: /var/www/html
-    volumes:
-      - ./wp-content:/var/www/html/wp-content
-      - ./wp-config.php:/var/www/html/wp-config.php
-    environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress123
-      WORDPRESS_DB_NAME: wordpress
-    networks:
-      - wordpress-network
-
 volumes:
   suitcasemag_db_data:
 
