@@ -19,8 +19,6 @@ $use_new_format = $templateVariant !== 'old_variant'; ?>
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
           <?php require get_template_directory() . '/custom/custom-single.php'; 
           ?>
-          <?php dynamic_sidebar(AdWidgets::getWidgetIdByName(AdWidgets::BILLBOARD)); ?>
-          <?php dynamic_sidebar(AdWidgets::getWidgetIdByName(AdWidgets::MPU)); ?>
         </article>
       <?php endwhile; ?>
     <?php else : ?>
