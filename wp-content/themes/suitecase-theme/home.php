@@ -54,10 +54,11 @@ $current_page = get_current_page();
       <?php require get_template_directory() . '/custom/blocks/recent-posts.php'; ?>
     </section>
     <?php
-    $content_blocks = function_exists('get_field') ? get_field('homepage_content_blocks', get_option('page_on_front')) : [];
-    if (!empty($content_blocks)) {
-      foreach ($content_blocks as $block) {
-        get_template_part('custom/blocks/acf-content-block', null, ['block' => $block]);
+    $front_page_id = get_option('page_on_front');
+    if (function_exists('have_rows') && have_rows('homepage_content_blocks', $front_page_id)) {
+      while (have_rows('homepage_content_blocks', $front_page_id)) {
+        the_row();
+        get_template_part('custom/blocks/acf-content-block');
       }
     }
     ?>
