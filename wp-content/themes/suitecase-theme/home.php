@@ -30,12 +30,12 @@ $current_page = get_current_page();
     </section>
 
     <section class="wrapper section-featured" aria-labelledby="featured-heading" role="region">
-    <h2 id="featured-heading" class="section-title"><a href="<?php echo esc_url(get_category_link(get_cat_ID('Featured'))); ?>"><?php esc_html_e("Featured", 'suitcasemag-theme'); ?></a></h2>
+      <h2 id="featured-heading" class="section-title"><a href="<?php echo esc_url(get_category_link(get_cat_ID('Featured'))); ?>"><?php esc_html_e("Featured", 'suitcasemag-theme'); ?></a></h2>
       <?php require get_template_directory() . '/custom/blocks/favorite-posts.php'; ?>
     </section>
 
     <section class="wrapper section-travel-guides" aria-labelledby="travel-guides-heading" role="region">
-    <h2 id="travel-guides-heading" class="section-title"><a href="<?php echo esc_url(get_category_link(get_cat_ID('Travel Guides'))); ?>"><?php esc_html_e("Travel Guides", 'suitcasemag-theme'); ?></a></h2>
+      <h2 id="travel-guides-heading" class="section-title"><a href="<?php echo esc_url(get_category_link(get_cat_ID('Travel Guides'))); ?>"><?php esc_html_e("Travel Guides", 'suitcasemag-theme'); ?></a></h2>
       <?php require get_template_directory() . '/custom/blocks/travel-guides.php'; ?>
     </section>
 
@@ -45,14 +45,22 @@ $current_page = get_current_page();
     </section>
 
     <section class="wrapper section-health-and-wellness" aria-labelledby="health-and-wellness-heading" role="region">
-    <h2 id="health-and-wellness-heading" class="section-title"><a href="<?php echo esc_url(get_category_link(get_cat_ID('Health & Wellness'))); ?>"><?php esc_html_e("Health & Wellness", 'suitcasemag-theme'); ?></a></h2>
+      <h2 id="health-and-wellness-heading" class="section-title"><a href="<?php echo esc_url(get_category_link(get_cat_ID('Health & Wellness'))); ?>"><?php esc_html_e("Health & Wellness", 'suitcasemag-theme'); ?></a></h2>
       <?php require get_template_directory() . '/custom/blocks/health-wellness-posts.php'; ?>
     </section>
 
     <section class="wrapper section-most-recent" aria-labelledby="most-recent-heading" role="region">
-    <h2 id="most-recent-heading" class="section-title"><a href="<?php echo esc_url(get_category_link(get_cat_ID('Most Recent'))); ?>"><?php esc_html_e("Most Recent", 'suitcasemag-theme'); ?></a></h2>
+      <h2 id="most-recent-heading" class="section-title"><a href="<?php echo esc_url(get_category_link(get_cat_ID('Most Recent'))); ?>"><?php esc_html_e("Most Recent", 'suitcasemag-theme'); ?></a></h2>
       <?php require get_template_directory() . '/custom/blocks/recent-posts.php'; ?>
     </section>
+    <?php
+    $content_blocks = function_exists('get_field') ? get_field('homepage_content_blocks', get_option('page_on_front')) : [];
+    if (!empty($content_blocks)) {
+      foreach ($content_blocks as $block) {
+        get_template_part('custom/blocks/acf-content-block', null, ['block' => $block]);
+      }
+    }
+    ?>
   <?php } ?>
 </main>
 

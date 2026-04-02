@@ -172,6 +172,10 @@ require_once __DIR__ . '/custom/AdminPanel.php';
 require_once __DIR__ . '/custom/custom-hooks.php';
 require_once __DIR__ . '/custom/db-cleaning-tools.php';
 
+add_action('acf/init', function () {
+    require_once __DIR__ . '/custom/acf-fields/homepage-content-blocks.php';
+});
+
 $custom_metaboxes = new CustomMetaboxes();
 $admin_panel = new AdminPanel();
 
