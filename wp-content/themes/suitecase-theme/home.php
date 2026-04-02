@@ -29,33 +29,40 @@ $current_page = get_current_page();
       <div class="section-newsletter-social"><?php require __DIR__ . '/custom/blocks/socials.php'; ?></div>
     </section>
 
-    <section class="wrapper section-featured" aria-labelledby="featured-heading" role="region">
-      <h2 id="featured-heading" class="section-title"><a href="<?php echo esc_url(get_category_link(get_cat_ID('Featured'))); ?>"><?php esc_html_e("Featured", 'suitcasemag-theme'); ?></a></h2>
-      <?php require get_template_directory() . '/custom/blocks/favorite-posts.php'; ?>
-    </section>
-
-    <section class="wrapper section-travel-guides" aria-labelledby="travel-guides-heading" role="region">
-      <h2 id="travel-guides-heading" class="section-title"><a href="<?php echo esc_url(get_category_link(get_cat_ID('Travel Guides'))); ?>"><?php esc_html_e("Travel Guides", 'suitcasemag-theme'); ?></a></h2>
-      <?php require get_template_directory() . '/custom/blocks/travel-guides.php'; ?>
-    </section>
-
-    <section class="section-sponsored" aria-labelledby="sponsored-heading" role="region">
-      <h2 id="sponsored-heading" class="screen-reader-text">><?php esc_html_e("Sponsored", 'suitcasemag-theme'); ?></h2>
-      <?php require get_template_directory() . '/custom/blocks/sponsored-posts.php'; ?>
-    </section>
-
-    <section class="wrapper section-health-and-wellness" aria-labelledby="health-and-wellness-heading" role="region">
-      <h2 id="health-and-wellness-heading" class="section-title"><a href="<?php echo esc_url(get_category_link(get_cat_ID('Health & Wellness'))); ?>"><?php esc_html_e("Health & Wellness", 'suitcasemag-theme'); ?></a></h2>
-      <?php require get_template_directory() . '/custom/blocks/health-wellness-posts.php'; ?>
-    </section>
-
-    <section class="wrapper section-most-recent" aria-labelledby="most-recent-heading" role="region">
-      <h2 id="most-recent-heading" class="section-title"><a href="<?php echo esc_url(get_category_link(get_cat_ID('Most Recent'))); ?>"><?php esc_html_e("Most Recent", 'suitcasemag-theme'); ?></a></h2>
-      <?php require get_template_directory() . '/custom/blocks/recent-posts.php'; ?>
-    </section>
     <?php
-    $front_page_id = get_option('page_on_front');
-    if (function_exists('have_rows') && have_rows('homepage_content_blocks', $front_page_id)) {
+    $front_page_id  = get_option('page_on_front');
+    $has_new_blocks = function_exists('have_rows') && have_rows('homepage_content_blocks', $front_page_id);
+    ?>
+
+    <?php if (!$has_new_blocks) : ?>
+      <section class="wrapper section-featured" aria-labelledby="featured-heading" role="region">
+        <h2 id="featured-heading" class="section-title"><a href="<?php echo esc_url(get_category_link(get_cat_ID('Featured'))); ?>"><?php esc_html_e("Featured", 'suitcasemag-theme'); ?></a></h2>
+        <?php require get_template_directory() . '/custom/blocks/favorite-posts.php'; ?>
+      </section>
+
+      <section class="wrapper section-travel-guides" aria-labelledby="travel-guides-heading" role="region">
+        <h2 id="travel-guides-heading" class="section-title"><a href="<?php echo esc_url(get_category_link(get_cat_ID('Travel Guides'))); ?>"><?php esc_html_e("Travel Guides", 'suitcasemag-theme'); ?></a></h2>
+        <?php require get_template_directory() . '/custom/blocks/travel-guides.php'; ?>
+      </section>
+
+      <section class="section-sponsored" aria-labelledby="sponsored-heading" role="region">
+        <h2 id="sponsored-heading" class="screen-reader-text">><?php esc_html_e("Sponsored", 'suitcasemag-theme'); ?></h2>
+        <?php require get_template_directory() . '/custom/blocks/sponsored-posts.php'; ?>
+      </section>
+
+      <section class="wrapper section-health-and-wellness" aria-labelledby="health-and-wellness-heading" role="region">
+        <h2 id="health-and-wellness-heading" class="section-title"><a href="<?php echo esc_url(get_category_link(get_cat_ID('Health & Wellness'))); ?>"><?php esc_html_e("Health & Wellness", 'suitcasemag-theme'); ?></a></h2>
+        <?php require get_template_directory() . '/custom/blocks/health-wellness-posts.php'; ?>
+      </section>
+
+      <section class="wrapper section-most-recent" aria-labelledby="most-recent-heading" role="region">
+        <h2 id="most-recent-heading" class="section-title"><a href="<?php echo esc_url(get_category_link(get_cat_ID('Most Recent'))); ?>"><?php esc_html_e("Most Recent", 'suitcasemag-theme'); ?></a></h2>
+        <?php require get_template_directory() . '/custom/blocks/recent-posts.php'; ?>
+      </section>
+    <?php endif; ?>
+
+    <?php
+    if ($has_new_blocks) {
       while (have_rows('homepage_content_blocks', $front_page_id)) {
         the_row();
         get_template_part('custom/blocks/acf-content-block');
