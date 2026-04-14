@@ -1572,12 +1572,23 @@ p:empty {
 .marquee-swiper,
 .post-marquee {
   height: 100vh;
+  position: relative;
 }
 
 .marquee-swiper-slide {
   position: relative;
   overflow: hidden;
   width: 100%;
+}
+
+.marquee-swiper-slide::after,
+.post-marquee::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .marquee-swiper-content,
@@ -1587,6 +1598,7 @@ p:empty {
   left: 1rem;
   max-width: 100%;
   right: 1rem;
+  z-index: 2;
 }
 
 .marquee-swiper-image,
@@ -1650,6 +1662,13 @@ p:empty {
 .marquee-swiper-pagination .swiper-pagination-bullet-active {
   background: var(--e-global-color-ffffff);
   opacity: 1;
+}
+
+@media (max-width: 479px) {
+  .marquee-swiper-slide::after,
+  .post-marquee::after {
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 100%);
+  }
 }
 
 @media (min-width: 480px) {
