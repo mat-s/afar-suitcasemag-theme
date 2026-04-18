@@ -2,7 +2,10 @@
 $post_id = get_the_ID();
 $post_url = esc_url(get_permalink());
 $categories = get_the_category($post_id);
-$thumbnail_url = get_the_post_thumbnail_url($post_id, !empty($image_size) ? $image_size : 'full'); 
+$teaser_image_id = get_post_meta($post_id, 'teaser_image', true);
+$thumbnail_url = $teaser_image_id
+    ? wp_get_attachment_image_url($teaser_image_id, !empty($image_size) ? $image_size : 'full')
+    : get_the_post_thumbnail_url($post_id, !empty($image_size) ? $image_size : 'full');
 ?>
 <article class="post-loop" aria-labelledby="post-title-<?php echo $post_id; ?>">
   <a class="post-loop-thumbnail" href="<?php echo $post_url; ?>">

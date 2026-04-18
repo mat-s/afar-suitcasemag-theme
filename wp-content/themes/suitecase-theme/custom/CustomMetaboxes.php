@@ -28,6 +28,12 @@ class CustomMetaboxes
                 'title' => __('Hero Image', 'suitcasemag-theme'),
                 'template' => 'post_thumbnail'
             ),
+            'teaser_image' => array(
+                'post_type' => 'post',
+                'name' => 'teaser_image',
+                'title' => __('Teaser Image (Portrait)', 'suitcasemag-theme'),
+                'template' => 'teaser_image'
+            ),
             'byline' => array(
                 'post_type' => 'post',
                 'name' => 'byline',
